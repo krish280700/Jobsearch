@@ -1,0 +1,55 @@
+$btn-color: (
+    "primary" #007bf0 #0056b3 #0056b3,
+    "secondary" #6c757d #495057 #495057,
+    "disabled" #ced4da #adb5bd #adb5bd,
+    "success" #28a745 #218838 #218838,
+    "action" #fd7e14 #d25e0c #d25e0c,
+    "danger" #dc3545" #bd2130" #bd2130,
+);
+
+@each $btn in $btn-color {
+    .btn-#{nth($btn, 1)} {
+        min-width: 25px;
+        max-width: 200px;
+        // border: 1px solid nth($btn, 3);
+        border-radius: 4px;
+        padding: 6px 10px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        &:hover{
+            background-color: nth($btn, 4);
+        }
+    }
+}
+
+.btn-primary{
+    background: hsla(212, 54%, 60%, 1);
+    background: linear-gradient(30deg, hsla(212, 54%, 60%, 1) 0%, hsla(219, 100%, 47%, 1) 100%);
+    background: -moz-linear-gradient(30deg, hsla(212, 54%, 60%, 1) 0%, hsla(219, 100%, 47%, 1) 100%);
+    background: -webkit-linear-gradient(30deg, hsla(212, 54%, 60%, 1) 0%, hsla(219, 100%, 47%, 1) 100%);
+    
+}
+.btn-success{
+    background: hsla(136, 52%, 45%, 1);
+    background: linear-gradient(30deg, hsla(136, 52%, 45%, 1) 0%, hsla(131, 94%, 28%, 1) 100%);
+    background: -moz-linear-gradient(30deg, hsla(136, 52%, 45%, 1) 0%, hsla(131, 94%, 28%, 1) 100%);
+    background: -webkit-linear-gradient(30deg, hsla(136, 52%, 45%, 1) 0%, hsla(131, 94%, 28%, 1) 100%);
+}
+
+.btn-action{
+    background: hsla(43, 78%, 47%, 1);
+    background: linear-gradient(30deg, hsla(43, 78%, 47%, 1) 0%, hsla(32, 100%, 53%, 1) 100%);
+    background: -moz-linear-gradient(30deg, hsla(43, 78%, 47%, 1) 0%, hsla(32, 100%, 53%, 1) 100%);
+    background: -webkit-linear-gradient(30deg, hsla(43, 78%, 47%, 1) 0%, hsla(32, 100%, 53%, 1) 100%);
+}
+.btn-secondary{
+    background: hsla(0, 0%, 93%, 1);
+    background: linear-gradient(30deg, hsla(0, 0%, 93%, 1) 0%, hsla(140, 2%, 70%, 1) 100%);
+    background: -moz-linear-gradient(30deg, hsla(0, 0%, 93%, 1) 0%, hsla(140, 2%, 70%, 1) 100%);
+    background: -webkit-linear-gradient(30deg, hsla(0, 0%, 93%, 1) 0%, hsla(140, 2%, 70%, 1) 100%);
+}
+button:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}

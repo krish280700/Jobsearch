@@ -1,0 +1,16 @@
+.sidepanel{
+    background: #fff;
+    transition-timing-function: ease-in;
+    transition: 2s;
+    box-shadow: 5px 10px 18px #888888;
+    color: #000000;
+}
+
+.sidepanel-header{
+    border-bottom: 1px solid #888888;
+}
+
+.sidepanelBody{
+    min-height: 83vh;
+    background: #f3f2f2;
+}
