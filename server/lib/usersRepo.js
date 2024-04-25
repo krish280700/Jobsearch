@@ -24,8 +24,8 @@ const userRepo = {
         const doc = await UserModel.findOne(filter);
         return doc
     },
-    create: async (movie) => {
-        const doc = {...movie};
+    create: async (user) => {
+        const doc = {...user};
         const result = await UserModel.create(doc);
         console.log(`A document was inserted with the _id: ${result.insertedId}`); 
     },
@@ -38,11 +38,11 @@ const userRepo = {
             console.log('No documents matched the query. Delted 0 documents');
         }
     },
-    update: async (movie) => {
-        const filter = {_id: new mongoose.Types.ObjectId(movie.id)};
+    update: async (user) => {
+        const filter = {_id: new mongoose.Types.ObjectId(user.id)};
         const updateDoc = {
             $set: {
-                ...movie
+                ...user
             }
         };
         const result = await UserModel.updateOne(filter, updateDoc);

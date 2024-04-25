@@ -11,6 +11,8 @@
 }
 
 .sidepanelBody{
+    max-height: 83vh;
     min-height: 83vh;
+    overflow-y: scroll;
     background: #f3f2f2;
 }

@@ -2,50 +2,25 @@
 
 import Sidepanel from '../Components/sidePanel';
 import Table from "../Components/table";
-// import { jobsCol } from "../Utilities/table"
 import { useState, useEffect, useRef} from 'react';
-import { addJob } from '../Data/inputFields';
-import { useForm } from 'react-hook-form';
-import Formgroup from '../components/formGroup';
-import {PencilSquareIcon, TrashIcon} from '@heroicons/react/16/solid'
 
-const Employers = () => {
+const Jobs = () => {
     const [data, setData] = useState([])
 	const [panelOpen, setPanelOpen] = useState(false)
     const [panel, setPanel] = useState({})
     const [jobDetail, setJobDetail] = useState({})
-    const { register, control, reset, handleSubmit, formState: { errors } } = useForm();
 
-    const onSubmit = async (data, type) => {
-        let formData = {...data, userId: '662939a56b79273192b8dead'}
-        let endPoint = type == 'Edit' ? `/${data._id}/edit` : ''
 
-        fetch(`http://localhost:8080/api/jobs${endPoint}`, 
-            {   
-                method: 'POST',
-                body: JSON.stringify(formData),
-                headers:{
-					'Content-Type': 'application/json',
-				}
-            })
+    const fetchJobList = () => {
+        fetch('http://localhost:8080/api/jobs/')
             .then(res => res.json())
             .then(res => {
-                console.log(res, "Hey, I'm working")
-                fetchUserJobList()
-                setPanelOpen(!panelOpen)
-                reset()
-            })
-	}
-    const fetchUserJobList = () => {
-        fetch('http://localhost:8080/api/jobs/662939a56b79273192b8dead/list')
-            .then(res => res.json())
-            .then(res => {
-                setData(res.job)
+                setData(res.jobs)
             })
     }
 
     useEffect(() => {
-        fetchUserJobList()
+        fetchJobList()
     }, [])
 
     const handleView =(id, from) => {
@@ -68,9 +43,6 @@ const Employers = () => {
                                 </div>
                             </>
                         setPanel({panelHeader: 'Job', panelBody, panelType: 'view' })
-                    }else{
-                        setPanel({panelHeader: 'Edit Job', panelFooter: 'Update', panelType: 'Edit'})
-                        reset(res.job)
                     }
                 })
     }
@@ -136,38 +108,8 @@ const Employers = () => {
     
             cell: info => info.getValue() ? info.getValue() :'--',
             footer: info => info.column.id,
-        },	
-        {
-            id: 'action',
-            header: 'Actions',
-
-            cell: info => {
-                return <div className='flex'>
-                            <p onClick={() => handleView(info?.row?.original?._id, 'Edit')}><PencilSquareIcon className='h-5 cursor-pointer'/></p>
-                            <TrashIcon className='h-5 ml-2 cursor-pointer' onClick={() => handleDelete(info?.row?.original?._id)}/>
-                        </div>
-            },
-            footer: info => info.column.id,
-        },	
+        },
     ]
-
-    const addEditForm = <form onSubmit={handleSubmit((data) => onSubmit(data, panel.panelType))}>
-                            {
-                                addJob.map((job, index) => {
-                                    return <div key={`${index}job`}>
-                                                <Formgroup from={'Add'} error={errors} form={job} register={register}/> 
-                                            </div>
-                                })
-                            }
-                        </form>
-
-    const handleDelete = (id) => {
-        fetch(`http://localhost:8080/api/jobs/${id}/delete`, {method: 'POST'})
-            .then(res => res.json())
-            .then(res => {
-                fetchUserJobList()
-            })
-    }
 
     return <>
         <>
@@ -179,7 +121,6 @@ const Employers = () => {
                         data={data}
                         panel={{panelOpen, setPanelOpen}}
                         panelConfig={{panel,setPanel}}
-                        additionalBtns={true}
                     />
 				</div>
 			</div>
@@ -187,12 +128,11 @@ const Employers = () => {
 				panelState={panelOpen} 
 				handlePanelState={setPanelOpen}
 				panelHeader={panel?.panelHeader} 
-				panelBody={ panel.panelBody ? panel.panelBody : addEditForm }
-                panelAction={handleSubmit((data) => onSubmit(data, panel.panelType))}
+				panelBody={ panel?.panelBody }
                 panelButton={panel?.panelFooter}
 			/>
 		</>
     </>
 }
 
-export default Employers
+export default Jobs

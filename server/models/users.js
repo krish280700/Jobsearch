@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema(
             type: Array,
         },
         organization: {
-            type: String
+            type: String,
         },
         postion: {
             type: String
@@ -32,12 +32,12 @@ const userSchema = new mongoose.Schema(
             required: true,
         },
         role: {
-            type: String
+            type: String,
         },
     },
     { timestamps: true }
 );
-
+  
 const UserModel = mongoose.models.User || mongoose.model("User", userSchema);
 
 module.exports =  { UserModel }

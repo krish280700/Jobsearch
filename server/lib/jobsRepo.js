@@ -9,7 +9,7 @@ async function run() {
 
 run().then(console.log).catch(console.error);
 
-const userRepo = {
+const jobRepo = {
     findAll: async () => {
         const users = await JobModel.find({});       
         return users;
@@ -19,9 +19,14 @@ const userRepo = {
         const doc = await JobModel.findOne(filter);
         return doc
     },
-    create: async (movie) => {
-        const doc = {...movie};
-        const result = await JobModel.insertOne(doc);
+    findByUserId: async (id) => {
+        const filter = {userId: id};
+        const doc = await JobModel.find(filter);
+        return doc
+    },
+    create: async (job) => {
+        const doc = {...job};
+        const result = await JobModel.create(doc);
         console.log(`A document was inserted with the _id: ${result.insertedId}`); 
     },
     deleteById: async (uuid) => {
@@ -33,11 +38,11 @@ const userRepo = {
             console.log('No documents matched the query. Delted 0 documents');
         }
     },
-    update: async (movie) => {
-        const filter = {_id: new mongoose.Types.ObjectId(movie.id)};
+    update: async (job) => {
+        const filter = {_id: new mongoose.Types.ObjectId(job._id)};
         const updateDoc = {
             $set: {
-                ...movie
+                ...job
             }
         };
         const result = await JobModel.updateOne(filter, updateDoc);
@@ -46,4 +51,4 @@ const userRepo = {
 
 };
 
-module.exports = userRepo;
+module.exports = jobRepo;

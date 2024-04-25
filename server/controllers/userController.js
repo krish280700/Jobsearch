@@ -8,7 +8,6 @@ exports.user_login = async function(req, res, next){
     const data = await userRepo.findBymail(email)
     if(data){
         const isPasswordCorrect = await bcrypt.compare(password, data.password);
-        console.log(isPasswordCorrect)
         if(isPasswordCorrect){
             res.json({msg: "User verified", isValid: true})
         }else{

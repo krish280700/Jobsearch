@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const jobSchema = new mongoose.Schema(
     {
         skills: {
-            type: Array,
+            type: String,
         },
         description: {
             type: String,
@@ -17,14 +17,23 @@ const jobSchema = new mongoose.Schema(
         salary: {
             type: String
         },
-        user: {
-            type: mongoose.Schema.Types.ObjectId, ref: 'User'
-        } 
+        organization: {
+            type: String
+        },
+        email: {
+            type: String
+        },
+        jobtype: {
+            type: String
+        },
+        userId: {
+            type: String
+        }
     },
     { timestamps: true }
 );
 
-const JobModel = mongoose.models.User || mongoose.model("Job", jobSchema);
+const JobModel = mongoose.models.Job || mongoose.model("Job", jobSchema);
 
  
 module.exports =  { JobModel }

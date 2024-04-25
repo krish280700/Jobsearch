@@ -1,7 +1,7 @@
 import "../Sass/abstracts/_sidepanel.scss"
 import Button from "./Base/button"
 
-const Sidepanel = ({panelHeader, panelState, panelBody, panelButton, handlePanelState}) => {
+const Sidepanel = ({panelHeader, panelState, panelBody, panelButton, handlePanelState, panelAction}) => {
     return  panelState ? 
             <>
                 <div className='w-4/12 fixed h-full top-0 right-0 z-50'>
@@ -26,9 +26,9 @@ const Sidepanel = ({panelHeader, panelState, panelBody, panelButton, handlePanel
                                 </div>
                             </div>
                             <div className='relative bottom-0'>
-                                {/* Modal footer  */}
+                                {/* Panel footer  */}
                                 <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                    <Button className="btn-primary" name='Filter'/>
+                                    {panelButton && <Button className="btn-primary" name={panelButton} onClick={panelAction}/>}
                                     <Button className="btn-secondary ml-2" name="Cancel" onClick={() => handlePanelState(!panelState)} />
                                 </div>
                             </div>

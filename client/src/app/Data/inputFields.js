@@ -79,3 +79,86 @@ export const signUpFeilds = [
     },
     
 ]
+
+export const addJob = [
+    {
+        label: 'Title',
+        name: 'position',
+        value: '',
+        placeholder: 'Enter Job position',
+        type: 'text',
+        isRequired: true,
+        formType: ['Add', 'Edit', 'Signup', 'admin'],
+        validations: {required: 'This field is required', minLength:{value:3, message:'Minimum 3 characters required'}, maxLength: {value:20, message:'Maximum 20 characters'}}
+    },
+    {
+        label: 'Location',
+        name: 'location',
+        value: '',
+        placeholder: 'Enter Location',
+        type: 'text',
+        isRequired: true,
+        formType: ['Add', 'Edit', 'Signup', 'admin'],
+        validations: {required: 'This field is required', minLength:{value:3, message:'Minimum 3 characters required'}, maxLength: {value:20, message:'Maximum 20 characters'}}
+    },
+    {
+        label: 'Contact Email',
+        name: 'email',
+        value: '',
+        placeholder: 'Enter contact mail',
+        type: 'textr',
+        isRequired: false,
+        formType: ['Add', 'Edit', 'Signup', 'admin'],
+        validations: {}
+    },
+    {
+        label: 'Salary',
+        name: 'salary',
+        value: '',
+        placeholder: 'Enter salary',
+        type: 'text',
+        isRequired: false,
+        formType: ['Add', 'Edit', 'Signup', 'admin'],
+        validations: {}
+    },
+    {
+        label: 'Skills',
+        name: 'skills',
+        value: '',
+        placeholder: 'Enter skills required',
+        type: 'text',
+        isRequired: false,
+        formType: ['Add', 'Edit', 'Signup', 'admin'],
+        validations: {}
+    },
+    {
+        label: 'Organization',
+        name: 'organization',
+        value: '',
+        placeholder: 'Enter Organization',
+        type: 'text',
+        isRequired: false,
+        formType: ['Add', 'Edit', 'Signup', 'admin'],
+        validations: {}
+    },
+    {
+        label: 'Job Type',
+        name: 'jobType',
+        value: '',
+        placeholder: 'Enter Job Type',
+        type: 'text',
+        isRequired: false,
+        formType: ['Add', 'Edit', 'Signup', 'admin'],
+        validations: {}
+    }, 
+    {
+        label: 'Description',
+        name: 'description',
+        value: '',
+        placeholder: 'Enter Job Description',
+        type: 'textarea',
+        isRequired: false,
+        formType: ['Add', 'Edit', 'Signup', 'admin'],
+        validations: {}
+    },    
+]
