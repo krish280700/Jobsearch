@@ -1,4 +1,6 @@
+'use client'
 import { RegisterForm } from '@/app/Components/registerForm';
+import {signIn} from "next-auth/react"
 import Image from 'next/image';
 
  
@@ -24,8 +26,8 @@ export default function SignUp() {
 					</h1>
 					<RegisterForm from={'Signup'}/>
 				</div>
+				<button className='px-10 border w-full bg-white shadow py-3' onClick={() => signIn("google")}>Sign Up with Google</button>
 			</div>
-			<button onClick={() => signIn("google")}>Sign In with Google</button>
 		</div>
 	);
 }

@@ -9,7 +9,7 @@ export const authConfig = {
     providers:[],
     pages: {
       signIn: "/login",
-      signUp: "/signup",
+      signUp: "/signUp",
     },
     callbacks: {
       authorized({ auth, request }) {
@@ -24,10 +24,11 @@ export const authConfig = {
         }
 
         if (isAuthRoute) {
+            console.log(nextUrl.pathname, 'next')
             if (isLoggedIn) {
               return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
             }
-            return null;
+            return true;
         }
 
         if (!isLoggedIn && !isPublicRoute) {

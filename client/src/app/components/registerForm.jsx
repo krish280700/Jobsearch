@@ -7,12 +7,17 @@ import Formgroup from './formGroup';
 import { useForm } from 'react-hook-form';
 import {signUpFeilds} from "@/app/Data/inputFields"
 import { fetchUsers } from '../Utilities/utils';
+import { useRouter } from 'next/navigation';
 
 export const RegisterForm = ({from}) => {
 	const { register, control, reset, handleSubmit, formState: { errors } } = useForm();
+	const router = useRouter();
 
 	const onSubmit = async (data) => {
         fetchUsers(data)
+			.then((res) => {
+				router.push('/login');
+			}).catch(err => console.log(err))
 	}
 
     return (
