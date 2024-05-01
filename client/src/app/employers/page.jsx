@@ -84,7 +84,7 @@ const Employers = () => {
     
             cell: info => {
                 return <>
-                            <p onClick={() => handleView('662981eaec55e2425e87eead', 'View')}>{info.getValue()}</p>
+                            <p className='text-blue-300 cursor-pointer' onClick={() => handleView('662981eaec55e2425e87eead', 'View')}>{info.getValue()}</p>
                         </>
             },
             footer: info => info.column.id,
@@ -94,7 +94,7 @@ const Employers = () => {
             id: 'description',
             header: 'Description',
     
-            cell: info => info.getValue(),
+            cell: info => info.getValue() ? info.getValue() : '--',
             footer: info => info.column.id,
         },
         {

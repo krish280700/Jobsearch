@@ -1,5 +1,5 @@
 import "../Sass/abstracts/_sidepanel.scss"
-import Button from "./Base/button"
+import BTN from "@/app/components/Base/button"
 
 const Sidepanel = ({panelHeader, panelState, panelBody, panelButton, handlePanelState, panelAction}) => {
     return  panelState ? 
@@ -28,8 +28,8 @@ const Sidepanel = ({panelHeader, panelState, panelBody, panelButton, handlePanel
                             <div className='relative bottom-0'>
                                 {/* Panel footer  */}
                                 <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                    {panelButton && <Button className="btn-primary" name={panelButton} onClick={panelAction}/>}
-                                    <Button className="btn-secondary ml-2" name="Cancel" onClick={() => handlePanelState(!panelState)} />
+                                    {panelButton && <BTN className="btn-primary" name={panelButton} onClick={panelAction}/>}
+                                    <BTN className="btn-secondary ml-2" name="Cancel" onClick={() => handlePanelState(!panelState)} />
                                 </div>
                             </div>
                         </div>

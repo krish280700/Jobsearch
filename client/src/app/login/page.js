@@ -9,6 +9,8 @@ import FormError from '../Components/Base/formError';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link'
 import { useState, useTransition } from 'react';
+import { authenticate } from '../Utilities/utils';
+import {signIn} from "next-auth/react"
 import Image from 'next/image'
  
 const LoginForm = () => {
@@ -28,18 +30,7 @@ const LoginForm = () => {
 		setError("");
     	setSuccess("");
     
-		fetch("http://localhost:8080/api/users/login",
-        {   
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers:{
-                'Content-Type': 'application/json',
-            }
-        })
-            .then(res => res.json())
-            .then(res => {
-                console.log(res)
-            })
+		authenticate(data)
 	};
 	  
 
@@ -134,7 +125,7 @@ const LoginForm = () => {
 					</p>
 				</div>
 			</form>
-			{/* <button onClick={() => logInwithGoogle()}>Sign In with Google</button> */}
+			<button onClick={() => signIn("google")}>Sign In with Google</button>
 		</div>
 	);
 }

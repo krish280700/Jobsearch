@@ -6,24 +6,13 @@ import Link from 'next/link';
 import Formgroup from './formGroup';
 import { useForm } from 'react-hook-form';
 import {signUpFeilds} from "@/app/Data/inputFields"
-
+import { fetchUsers } from '../Utilities/utils';
 
 export const RegisterForm = ({from}) => {
 	const { register, control, reset, handleSubmit, formState: { errors } } = useForm();
 
 	const onSubmit = async (data) => {
-        fetch('http://localhost:8080/api/users', 
-            {   
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers:{
-					'Content-Type': 'application/json',
-				}
-            })
-            .then(res => res.json())
-            .then(res => {
-                console.log(res, "Hey, I'm working")
-            })
+        fetchUsers(data)
 	}
 
     return (
@@ -42,7 +31,7 @@ export const RegisterForm = ({from}) => {
                     <Button className="mt-4 btn-primary w-full" icon={<ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />} name={'Register'}/>
                 
                     <p className='mt-1 text-sm'>already have an account?
-                        <Link href='/signin' className='text-blue-500 underline font-bold'> Sign In</Link> 
+                        <Link href='/login' className='text-blue-500 underline font-bold'> Sign In</Link>  
                     </p>
 						
 				</div>

@@ -15,6 +15,9 @@ router.post('/:id/delete', userController.users_delete_post);
 // GET users view(done)
 router.get('/:id', userController.user_detail);
 
+// Post users view(done)
+router.post('/mail', userController.user_detail_mail);
+
 // GET users edit(done)
 router.get('/:id/edit', userController.user_edit_get);
 

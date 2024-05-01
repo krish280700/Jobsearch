@@ -25,7 +25,7 @@ export default function SignUp() {
 					<RegisterForm from={'Signup'}/>
 				</div>
 			</div>
-	
+			<button onClick={() => signIn("google")}>Sign In with Google</button>
 		</div>
 	);
 }

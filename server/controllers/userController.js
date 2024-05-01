@@ -9,7 +9,7 @@ exports.user_login = async function(req, res, next){
     if(data){
         const isPasswordCorrect = await bcrypt.compare(password, data.password);
         if(isPasswordCorrect){
-            res.json({msg: "User verified", isValid: true})
+            res.json({msg: "User verified", isValid: true, data})
         }else{
             res.json({msg: "Incorrect Password"})
         }
@@ -35,10 +35,20 @@ exports.user_detail = async function(req, res, next) {
     }
 };
 
+/* GET a user by mail */
+exports.user_detail_mail = async function(req, res, next) {
+    const user = await userRepo.findBymail(req.body.email);
+    if (user) {
+      res.json({user: user});
+    } else {
+      res.json({msg: 'Something Went Wrong'});
+    }
+};
+
 /* GET user edit */
 exports.user_edit_get = async function(req, res, next) {
     const user = await userRepo.findById(req.params.id);
-    res.json({user: user} );
+    res.json({user: user});
 };
 
 /* POST users delete */
@@ -57,7 +67,7 @@ exports.users_create_post = async function(req, res, next) {
         res.json({msg: result.array()});
     } else {
         await userRepo.create(user);
-        res.json({msg: "User Successfully created"});
+        res.json({msg: "User Successfully created", inserted : true});
     }
 };
 

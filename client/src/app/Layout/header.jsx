@@ -1,6 +1,6 @@
 'use server'
 
-// import { handleSignOut } from "@/app/Utilities/utils";
+import { handleSignOut } from "@/app/Utilities/utils";
 import Link from "next/link"
 // import { auth } from "../auth";
 
@@ -17,7 +17,7 @@ const Header = async () => {
         </div>
         <div className="">
           <form
-            action={''}
+            action={handleSignOut}
           >
             <button className="">
               {/* <MdLogout /> */}
